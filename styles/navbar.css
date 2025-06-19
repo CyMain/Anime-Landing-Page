@@ -20,7 +20,7 @@ nav{
             justify-content: center;
             align-items: center;
             >.nav-link{
-                animation: fade-slide-up 1s ease-in-out;
+                animation: fade-slide-down 1s ease-in-out;
                 text-align: center;
                 text-transform: uppercase;
                 position: relative;
