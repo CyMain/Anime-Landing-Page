@@ -13,6 +13,7 @@ nav{
         display: flex;
         list-style: none;
         >.nav-option{
+            position: relative;
             cursor: pointer;
             height: 100%;
             width: 7rem;
@@ -25,10 +26,51 @@ nav{
                 text-transform: uppercase;
                 position: relative;
             }
+            >.select-list{
+                display: none;
+                flex-direction: column;
+                list-style: none;
+                position: absolute;
+                bottom: -5.5rem;
+                left: 0.3rem;
+                width: fit-content;
+                height: fit-content;
+                max-height: 50dvh;
+                scroll-behavior: auto;
+                text-wrap-mode: nowrap;
+                background: rgb(var(--background-col));
+                >.select-list-item{
+                    text-transform: uppercase;
+                    display: flex;
+                    align-items: center;
+                    height: 3rem;
+                    border-bottom: 1px solid rgb(var(--text-color));
+                    &:hover{
+                        >.select-link{
+                            background: rgb(var(--background-col2), 0.8);
+                        }
+                        
+                    }
+                    &:last-of-type{
+                        border: none;
+                    }
+                    >.select-link{
+                        padding: 0 1rem 0 0.2rem;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
             &:hover{
                 background: rgb(var(--background-col), 0.04);
                 .nav-link::after{
                     width: 100%;
+                }
+                >.select-list{
+                    display: flex;
+                    animation: fade-slide-right 0.12s ease-in-out;
                 }
             }
         }
@@ -50,12 +92,17 @@ nav{
 .toggle-mode{
     background:transparent;
     border: 1px solid rgb(var(--text-color));
-    color: rgb(var(--text-color));
+    fill: rgb(var(--text-color));
     height: 2rem;
     width: 2rem;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover{
         background: rgb(var(--text-color));
-        color: rgb(var(--background-col));
+        svg{
+            filter: invert();
+        }
     }
 }
