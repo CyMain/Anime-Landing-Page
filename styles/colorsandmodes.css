@@ -1,0 +1,11 @@
+body{
+    --background-col:242, 242, 242;
+    --background-col2:231, 231, 231;
+    --accent1:0, 0, 255;
+    --text-color:26, 26, 26;
+}
+
+body.dark-mode{
+    --background-col:17, 17, 17;
+    --text-color:226, 226, 226;
+}
