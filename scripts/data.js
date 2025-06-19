@@ -11,7 +11,7 @@ export const charas = [
         id:1,
         name:"ryo Yamada",
         desc: "cawid wido nhwaod pofneaponf aknlf anpod fnawpof naefkl",
-        charIMGs: ['./assets/images/ryo1.jpg', './assets/images/ryo2.jpg', './assets/images/bocchi1.jpg', './assets/images/konosurock.jpg'],
+        charIMGs: ['./assets/images/cutouts/ryo1-cutout.png', './assets/images/cutouts/ryo2-cutout.png'],
     },
     {
         id:2,

@@ -3,6 +3,7 @@ import {animes, charas} from './data.js';
 let light = true;
 let currChar = 1;
 
+charAction(currChar);
 
 
 document.querySelector('.toggle-mode').addEventListener('click', ()=>{
@@ -12,32 +13,30 @@ document.querySelector('.toggle-mode').addEventListener('click', ()=>{
 
 function charAction(currCharInd){
     let char;
+    let currIndex = 1;
+    let imgsLength;
     charas.find(chara =>{
         if(chara.id == currCharInd){
             char = chara;
             console.log(chara);
         }
     })
+    imgsLength = char.charIMGs.length;
     setInterval(()=>{
-        let timer = 4000;
-        char.charIMGs.forEach((imgURL, index) =>{
-            if(index !== 0){
-                setTimeout(()=>{
-                    changeCharIMG(imgURL);
-                    console.log(`changed to ${imgURL}`);
-                }, timer)
-                timer += 4000;
-            }
-        })
-    }, 12000)
+        if(currIndex == imgsLength){
+            currIndex = 0;
+        }
+        changeCharIMG(char.charIMGs[currIndex]);
+        currIndex+=1;
+    }, 4000);
 }
 
 function changeCharIMG(nextCharImg){
     let imgTag = document.querySelector('.char-img-js');
-    imgTag.style.animation ="fade-slide-away-left 1s ease-in-out forwards";
+    imgTag.style.animation ="fade-slide-away-left 1s ease-in forwards";
     setTimeout(()=>{
         imgTag.src = nextCharImg;
-        imgTag.style.animation ="fade-slide-left 1s ease-in-out forwards";
+        imgTag.style.animation ="fade-slide-left 1s ease-in forwards";
     },1000);
 }
 
@@ -53,4 +52,7 @@ function toggleMode(){
 
 //Make characters of an anime change periodically.
 //And make the colors change too(CSS)
+
+//Fixed Errors:
 //Error: from line 21. Code runs all at once after 4 seconds instead of once every 4 seconds
+//Interval timer issue
