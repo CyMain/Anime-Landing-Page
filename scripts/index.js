@@ -4,14 +4,34 @@ let light = true;
 let currChar = 1;
 
 siteInitializer();
-charAction(currChar);
 
-function siteInitializer(){
-    document.body.classList.add("nijika");
+
+function siteInitializer(animeID, charID){
+    let startAnime = (animeID ? animeID : animes[0]);
+    const animeNameTag = document.querySelector('.anime-name');
+    const charName = document.querySelector('.char-name');
+    const charDesc = document.querySelector('.char-desc');
+    const charIMG = document.querySelector('.char-img-js');
+    animeNameTag.textContent = startAnime.name;
+    charas.find(chara =>{
+        console.log('looking for chara');
+        if(chara.id == (charID? charID : startAnime.chars[0])){
+            charName.textContent = chara.name;
+            charDesc.textContent = chara.desc
+            charIMG.src = chara.charIMGs[0];
+            modeHandler(chara.modeName);
+            charAction(chara.id);
+        }
+    });
 }
 
-function modeHandler(){
-
+function modeHandler(mode){
+    document.body.classList.forEach(cs =>{
+        if((cs !== "dark-mode") ||(cs !== mode)){
+            document.body.classList.remove(cs);
+        }
+    })
+    document.body.classList.add(mode);
 }
 
 document.querySelector('.toggle-mode').addEventListener('click', ()=>{
