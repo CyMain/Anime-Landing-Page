@@ -18,10 +18,10 @@ body.ryo.dark-mode{
     --accent1:17, 17, 44;
 }
 
-body.banana{
-
+body.nijika{
+    --accent1:251, 255, 0;
 }
 
-body.banana.dark-mode{
-    
+body.nijika.dark-mode{
+    --accent1:89, 90, 0;
 }

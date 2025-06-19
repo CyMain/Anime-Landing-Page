@@ -7,7 +7,7 @@ siteInitializer();
 charAction(currChar);
 
 function siteInitializer(){
-    document.body.classList.add("ryo");
+    document.body.classList.add("nijika");
 }
 
 function modeHandler(){
