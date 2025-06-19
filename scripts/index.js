@@ -3,7 +3,7 @@ import {animes, charas} from './data.js';
 let light = true;
 let currChar = 1;
 
-charAction(currChar);
+
 
 document.querySelector('.toggle-mode').addEventListener('click', ()=>{
     //mode button
@@ -19,12 +19,14 @@ function charAction(currCharInd){
         }
     })
     setInterval(()=>{
+        let timer = 4000;
         char.charIMGs.forEach((imgURL, index) =>{
             if(index !== 0){
                 setTimeout(()=>{
                     changeCharIMG(imgURL);
                     console.log(`changed to ${imgURL}`);
-                }, 4000)
+                }, timer)
+                timer += 4000;
             }
         })
     }, 12000)
