@@ -3,8 +3,16 @@ import {animes, charas} from './data.js';
 let light = true;
 let currChar = 1;
 
+siteInitializer();
 charAction(currChar);
 
+function siteInitializer(){
+    document.body.classList.add("ryo");
+}
+
+function modeHandler(){
+
+}
 
 document.querySelector('.toggle-mode').addEventListener('click', ()=>{
     //mode button
@@ -28,16 +36,16 @@ function charAction(currCharInd){
         }
         changeCharIMG(char.charIMGs[currIndex]);
         currIndex+=1;
-    }, 4000);
+    }, 6000);
 }
 
 function changeCharIMG(nextCharImg){
     let imgTag = document.querySelector('.char-img-js');
-    imgTag.style.animation ="fade-slide-away-left 1s ease-in forwards";
+    imgTag.style.animation ="fade-slide-away-left 1s ease-in-out forwards";
     setTimeout(()=>{
         imgTag.src = nextCharImg;
-        imgTag.style.animation ="fade-slide-left 1s ease-in forwards";
-    },1000);
+        imgTag.style.animation ="fade-slide-left 1s ease-in-out forwards";
+    },2000);
 }
 
 function toggleMode(){
