@@ -1,8 +1,15 @@
+import {animes, charas} from './data.js';
+
 let light = true;
+let currChar = 1;
 
 document.querySelector('.toggle-mode').addEventListener('click', ()=>{
     toggleMode();
 })
+
+function changeChar(){
+
+}
 
 function toggleMode(){
     if(light){
@@ -13,3 +20,6 @@ function toggleMode(){
         light = true;
     }
 }
+
+//Make characters of an anime change periodically.
+//And make the colors change too(CSS)

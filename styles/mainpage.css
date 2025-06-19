@@ -34,6 +34,7 @@
     justify-content: center;
     left: 0;
     right: 0;
+    animation: fade-slide-up 1s ease-in-out;
     img{
         height: 100%;
         aspect-ratio: 1/1;
@@ -55,6 +56,11 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    >*{
+        animation: fade-slide-up 1s ease-in-out;
+    }
+
     >.anime-name{
         text-transform: uppercase;
         font-size: 4rem;
@@ -84,6 +90,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    >*{
+        animation: fade-slide-up 1s ease-in-out;
+    }
 
     .char-name{
         text-transform: uppercase;
