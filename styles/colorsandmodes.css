@@ -25,3 +25,18 @@ body.nijika{
 body.nijika.dark-mode{
     --accent1:89, 90, 0;
 }
+
+body.kita{
+    --accent1: 224, 5, 5;
+}
+
+body.kita.dark-mode{
+    --accent1: 83, 0, 0;
+}
+
+body.bocchi{
+    --accent1: 230, 44, 199;
+}
+body.bocchi.dark-mode{
+    --accent1: 82, 15, 71;
+}

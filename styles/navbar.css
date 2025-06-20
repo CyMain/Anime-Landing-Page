@@ -31,7 +31,7 @@ nav{
                 flex-direction: column;
                 list-style: none;
                 position: absolute;
-                bottom: -5.5rem;
+                top: 3.1rem;
                 left: 0.3rem;
                 width: fit-content;
                 height: fit-content;

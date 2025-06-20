@@ -9,6 +9,7 @@ siteInitializer();
 
 
 function siteInitializer(animeInd, charInd){
+    //requires index of anime in animes and index of character in its parent anime array.
     clearAllTimeoutsAndIntervals();
     console.log(animeInd, charInd);
     let startAnime = (animeInd ? animes[animeInd] : animes[0]);
@@ -27,6 +28,7 @@ function siteInitializer(animeInd, charInd){
             charIMG.src = chara.charIMGs[0];
             modeHandler(chara.modeName);
             charAction(chara.id);
+            charIMG.style.animation = "fade-slide-up 1s ease-in-out";
         }
     });
 }
