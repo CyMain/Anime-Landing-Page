@@ -1,4 +1,4 @@
-import {animes, charas} from './data.js';
+import {animes, charas} from '/scripts/data.js';
 
 let light = true;
 let currChar = 1;
