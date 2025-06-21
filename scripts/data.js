@@ -20,7 +20,7 @@ export const charas = [
         id:'1',
         name:"ryo Yamada",
         desc: "Rich girl who really likes music. The introverted extrovert of the group. Not the brightest too.",
-        charIMGs: ['/assets/images/cutouts/ryo1-cutout.png', '/assets/images/cutouts/ryo2-cutout.png', '/assets/images/cutouts/ryo3-cutout.png', '/assets/images/cutouts/ryo4-cutout.png'],
+        charIMGs: ['/assets/images/cutouts/ryo1-cutout.webp', '/assets/images/cutouts/ryo2-cutout.webp', '/assets/images/cutouts/ryo3-cutout.webp', '/assets/images/cutouts/ryo4-cutout.webp'],
         modeName:"ryo",
     },
     {
@@ -41,7 +41,7 @@ export const charas = [
         id:'4',
         name:"Nijika Ijichi",
         desc: "Band Manager!",
-        charIMGs: ['/assets/images/cutouts/nijika-cutout2.png', '/assets/images/cutouts/nijika2-cutout.png', '/assets/images/cutouts/nijika3-cutout.png'],
+        charIMGs: ['/assets/images/cutouts/nijika1-cutout.webp', '/assets/images/cutouts/nijika2-cutout.png', '/assets/images/cutouts/nijika3-cutout.png'],
         modeName:"nijika",
     },{
         id:'5',
