@@ -47,7 +47,7 @@ export const charas = [
         id:'5',
         name:"Tanjiro Kamado",
         desc: "The main character of Kimetsu no Yaiba",
-        charIMGs: ['/assets/images/cutouts/tanjiro1-cutout.png', '/assets/images/cutouts/tanjiro2-cutout.png'],
+        charIMGs: ['/assets/images/cutouts/tanjiro1-cutout.png', '/assets/images/cutouts/tanjiro2-cutout.png', '/assets/images/cutouts/tanjiro3-cutout.png'],
         modeName:"tanjiro",
     },{
         id:'6',
