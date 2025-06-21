@@ -1,17 +1,18 @@
 export const animes = [
+     {
+        id:"A1",
+        name:"Bocchi The Rock",
+        chars: ['1', '2', '3', '4', '9'],
+        watchURL: "https://www.crunchyroll.com/series/GXJHM3P19/bocchi-the-rock?srsltid=AfmBOoq1YZbtEqVgtY0YWzY75ZMFfCz33W-FH3VGTMgJ2KwwANRMHpTZ",
+        gallery: [],
+    },
     {
         id:"A2",
         name:"Kimetsu no Yaiba",
         chars: ['5', '6', '7', '8'],
         watchURL: "https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba?srsltid=AfmBOooUbvB8AuppEPxnhZNiufO8orhJ0gO1csjUr7XZTy4Y5rGcHqE8",
         gallery: [],
-    }, {
-        id:"A1",
-        name:"Bocchi The Rock",
-        chars: ['1', '2', '3', '4', '9'],
-        watchURL: "https://www.crunchyroll.com/series/GXJHM3P19/bocchi-the-rock?srsltid=AfmBOoq1YZbtEqVgtY0YWzY75ZMFfCz33W-FH3VGTMgJ2KwwANRMHpTZ",
-        gallery: [],
-    }
+    },
 ]
 
 export const charas = [
