@@ -2,13 +2,35 @@ import {animes, charas} from './data.js';
 
 let light = true;
 let currChar = 1;
+let view;
 let timeouts = [];
 let intervals = [];
 
 siteInitializer();
+document.querySelector('.animes-link').addEventListener('click', (e)=>{
+        dropDown('animes', e.target.dataset.openClose, e.target);
+    })
+    document.querySelector('.chars-link').addEventListener('click', (e)=>{
+        dropDown('chars', e.target.dataset.openClose, e.target);
+    })
+document.querySelector('.menu-icon').addEventListener('click', (e)=>{
+        toggleSideBar('open');
+    });
+    document.querySelector('.close-menu-button').addEventListener('click', (e)=>{
+        toggleSideBar('close');
+    });
+    document.querySelector('.dim-screen').addEventListener('click', (e)=>{
+        toggleSideBar('close');
+    });
+
 
 
 function siteInitializer(animeInd, charInd){
+    if(window.innerWidth < 870.5){
+        view = 'small';
+    }else{
+        view = 'large';
+    }
     //requires index of anime in animes and index of character in its parent anime array.
     clearAllTimeoutsAndIntervals();
     let startAnime = (animeInd ? animes[animeInd] : animes[0]);
@@ -17,6 +39,7 @@ function siteInitializer(animeInd, charInd){
     const charDesc = document.querySelector('.char-desc');
     const charIMG = document.querySelector('.char-img-js');
     animeNameTag.textContent = startAnime.name;
+    document.querySelector('.watch-btn').href = startAnime.watchURL;
     dropdownGenerator(startAnime.id);
     charas.find(chara =>{
         //Charind is touching the wrong thing. We're meant to get the index in anime.chars. not charas
@@ -70,12 +93,7 @@ function dropdownGenerator(animeID){
     charsListTag.innerHTML = charsListHTML;
     document.querySelector('.animes-link').dataset.openClose = "open";
     document.querySelector('.chars-link').dataset.openClose = "open";
-    document.querySelector('.animes-link').addEventListener('click', (e)=>{
-        dropDown('animes', e.target.dataset.openClose, e.target);
-    })
-    document.querySelector('.chars-link').addEventListener('click', (e)=>{
-        dropDown('chars', e.target.dataset.openClose, e.target);
-    })
+    
     document.querySelectorAll('.char-link').forEach(link=>{
         link.addEventListener('click', (e)=>{
             siteInitializer(e.target.dataset.animeInd, e.target.dataset.charInd);
@@ -88,21 +106,15 @@ function dropdownGenerator(animeID){
             toggleSideBar('close');
         });
     });
-    document.querySelector('.menu-icon').addEventListener('click', (e)=>{
-        toggleSideBar('open');
-    });
-    document.querySelector('.close-menu-button').addEventListener('click', (e)=>{
-        toggleSideBar('close');
-    });
-    document.querySelector('.dim-screen').addEventListener('click', (e)=>{
-        toggleSideBar('close');
-    });
+    
 }
 function toggleSideBar(openClose){
-    if(window.innerWidth < 851){
-        const dimScreen = document.querySelector('.dim-screen');
-        const closeButton = document.querySelector('.close-menu');
-        console.log('screen ver')
+    const dimScreen = document.querySelector('.dim-screen');
+    const closeButton = document.querySelector('.close-menu');
+    if(window.innerWidth < 870.5){
+        closeButton.style.display = 'flex';
+        dimScreen.style.display = 'flex';
+        console.log('small screen ver')
         if(openClose === 'open'){
             console.log('open sidebar');
             const navMenu = document.querySelector('.nav-options');
@@ -117,7 +129,9 @@ function toggleSideBar(openClose){
             const navMenu = document.querySelector('.nav-options');
             dropDown('char', 'close', document.querySelector('.chars-link'));
             dropDown('animes', 'close', document.querySelector('.animes-link'));
-            dimScreen.style.animation = 'fade-slide-away-left 0.5s ease-in-out forwards';
+            if(dimScreen.style.display === 'flex'){
+                dimScreen.style.animation = 'fade-slide-away-left 0.5s ease-in-out forwards';
+            }
             navMenu.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
             setTimeout(()=>{
                 navMenu.style.display = "none";
@@ -126,6 +140,12 @@ function toggleSideBar(openClose){
             
         }
     } else{
+        console.log('close sidebar.');
+        closeButton.style.display = 'none';
+        dropDown('char', 'close', document.querySelector('.chars-link'));
+        dropDown('animes', 'close', document.querySelector('.animes-link'));
+        dimScreen.style.display = 'none';
+        
         console.error("Screen width too large to toggle sidebar.");
         console.error("Close button or menu icon should not available.");
     }
@@ -135,52 +155,79 @@ function dropDown(type, openClose, target){
     if(type === 'animes'){
         if(openClose==='open'){
             target.dataset.openClose = "close";
-            document.querySelector('.animes-list-js').style.display = "flex";
+            const list = document.querySelector('.animes-list-js');
+            list.style.display = "flex";
             dropDown('chars', 'close', document.querySelector('.chars-link'));
-            document.querySelector('.animes-dd-icon').style.transform = "rotate(180deg)";
-            document.querySelectorAll('.animes-select-link').forEach(link=>{
-                if(window.innerWidth <851){
-                    link.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
-                }else{
-                    link.style.animation = "fade-slide-down 0.5s ease-in-out forwards";
-                }
-            })
+            document.querySelector('.animes-dd-icon').style.animation = "icon-rotate-down 0.2s ease-in-out forwards";
+            setTimeout(() => {
+                document.querySelectorAll('.animes-select-link').forEach(link=>{
+                    if(window.innerWidth <871){
+                        link.style.animation = "none";
+                        void link.offsetWidth;
+                        link.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
+                    }else{
+                        link.style.animation = "none";
+                        void link.offsetWidth;
+                        link.style.animation = "fade-slide-down 0.5s ease-in-out forwards";
+                    }
+                });
+            }, 0);
         } else if(openClose === 'close'){
             target.dataset.openClose = "open";
-            document.querySelector('.animes-dd-icon').style.transform = "rotate(0deg)";
-            document.querySelectorAll('.animes-select-link').forEach(link=>{
-                if(window.innerWidth <851){
-                    link.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
-                }else{
-                    link.style.animation = "fade-slide-away-up 0.5s ease-in-out forwards";
-                }
-            })
+            document.querySelector('.animes-dd-icon').style.animation = "icon-rotate-up 0.2s ease-in-out forwards";
+            setTimeout(()=>{
+                document.querySelectorAll('.animes-select-link').forEach(link=>{
+                    if(window.innerWidth <871){
+                        link.style.animation = "none"; // Remove animation
+                        void link.offsetWidth;        
+                        link.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
+                    }else{
+                        link.style.animation = "none"; // Remove animation
+                        void link.offsetWidth;        
+                        link.style.animation = "fade-slide-away-up 0.5s ease-in-out forwards";
+                    }
+                })
+            }, 0);
+            
             document.querySelector('.animes-list-js').style.display = "none";
-        }
-        
+        }   
     } else if(type === 'chars'){
         if (openClose === 'open'){
             target.dataset.openClose = "close";
             document.querySelector('.chars-list-js').style.display = "flex";
             dropDown('animes', 'close', document.querySelector('.animes-link'));
-            document.querySelector('.chars-dd-icon').style.transform = "rotate(180deg)";
-            document.querySelectorAll('.chars-select-link').forEach(link=>{
-                if(window.innerWidth <851){
-                    link.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
-                }else{
-                    link.style.animation = "fade-slide-down 0.5s ease-in-out forwards";
-                }
-            });
+            document.querySelector('.chars-dd-icon').style.animation = "icon-rotate-down 0.2s ease-in-out forwards";
+            setTimeout(()=>{
+                document.querySelectorAll('.chars-select-link').forEach(link=>{
+                    if(window.innerWidth <871){
+                        link.style.animation = "none"; // Remove animation
+                        void link.offsetWidth;        
+                        link.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
+                    }else{
+                        link.style.animation = "none"; // Remove animation
+                        void link.offsetWidth;        
+                        link.style.animation = "fade-slide-down 0.5s ease-in-out forwards";
+                    }
+                });
+            }, 0);
+            
         } else if(openClose === 'close'){
             target.dataset.openClose = "open";
-            document.querySelector('.chars-dd-icon').style.transform = "rotate(0deg)";
+            document.querySelector('.chars-dd-icon').style.animation = "icon-rotate-up 0.2s ease-in-out forwards";
             document.querySelectorAll('.chars-select-link').forEach(link=>{
-                if(window.innerWidth <851){
-                    link.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
-                }else{
-                    link.style.animation = "fade-slide-away-up 0.5s ease-in-out forwards";
-                }
+                link.style.animation = "none"; // Remove animation
             })
+            setTimeout(()=>{
+                document.querySelectorAll('.chars-select-link').forEach(link=>{
+                    if(window.innerWidth <871){
+                        void link.offsetWidth;        
+                        link.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
+                    }else{
+                        void link.offsetWidth;        
+                        link.style.animation = "fade-slide-away-up 0.5s ease-in-out forwards";
+                    }
+                })
+            }, 0);
             document.querySelector('.chars-list-js').style.display = "none";
         }
     }
@@ -239,6 +286,38 @@ function toggleMode(){
         light = true;
     }
 }
+window.addEventListener('resize', () => {
+    const navMenu = document.querySelector('.nav-options');
+    const dimScreen = document.querySelector('.dim-screen');
+    const closeButton = document.querySelector('.close-menu');
+
+    // Detect view change
+    const isNowLarge = window.innerWidth > 870.5;
+    // Update view state
+    view = isNowLarge ? 'large' : 'small';
+
+    if (isNowLarge) {
+        // Restore navMenu for desktop
+        navMenu.style.display = "flex";
+        navMenu.style.animation = "none";
+        dimScreen.style.display = "none";
+        dimScreen.style.animation = "none";
+        closeButton.style.display = "none";
+        // Also close any dropdowns
+        dropDown('char', 'close', document.querySelector('.chars-link'));
+        dropDown('animes', 'close', document.querySelector('.animes-link'));
+    } else {
+        // Hide navMenu and overlays for mobile
+        navMenu.style.display = "none";
+        navMenu.style.animation = "none";
+        dimScreen.style.display = "none";
+        dimScreen.style.animation = "none";
+        closeButton.style.display = "none";
+        // Also close any dropdowns
+        dropDown('char', 'close', document.querySelector('.chars-link'));
+        dropDown('animes', 'close', document.querySelector('.animes-link'));
+    }
+});
 
 function clearAllTimeoutsAndIntervals(){
     timeouts.forEach(timeout =>{
@@ -250,6 +329,8 @@ function clearAllTimeoutsAndIntervals(){
     })
 }
 
+//Make watch buttons go to anime site
+//Error: if window resized while sidebar is open, it retains the close button.
 
 //Done Tasks:
 //Make characters of an anime change periodically.

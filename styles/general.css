@@ -23,7 +23,7 @@ a{
     color: rgb(var(--text-color));
 }
 
-button{
+button, .btn{
     cursor: pointer;
     border: none;
     border-radius: 4px;

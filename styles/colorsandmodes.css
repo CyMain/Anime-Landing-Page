@@ -40,3 +40,10 @@ body.bocchi{
 body.bocchi.dark-mode{
     --accent1: 82, 15, 71;
 }
+body.tanjiro{
+    --accent1:255, 40, 25;
+}
+
+body.tanjiro.dark-mode{
+    --accent1:87, 22, 6;
+}

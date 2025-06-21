@@ -1,3 +1,18 @@
+@keyframes icon-rotate-down{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-180deg);
+    }
+}
+
+@keyframes icon-rotate-up{
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
 @keyframes fade-slide-up {
     0%{
         opacity: 0;

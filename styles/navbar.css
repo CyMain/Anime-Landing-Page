@@ -125,10 +125,9 @@ nav {
     }
 }
 
-@media (min-width:850.5px) {
+@media (min-width:870.5px) {
     nav {
         >.menu {
-
             width: fit-content;
             height: 100%;
             display: flex;
@@ -141,6 +140,7 @@ nav {
             >.nav-options {
                 height: 100%;
                 display: flex;
+                gap: 1rem;
 
                 >.nav-option {
                     position: relative;
@@ -173,10 +173,7 @@ nav {
                             width: 100%;
                         }
 
-                        >.select-list {
-                            display: flex;
-                            animation: fade-slide-right 0.12s ease-in-out;
-                        }
+
                     }
                 }
             }
@@ -196,7 +193,7 @@ nav {
     }
 }
 
-@media (max-width:850px) {
+@media (max-width:870.5px) {
     nav {
         >.menu {
             height: 100%;
