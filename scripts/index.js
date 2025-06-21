@@ -11,9 +11,7 @@ siteInitializer();
 function siteInitializer(animeInd, charInd){
     //requires index of anime in animes and index of character in its parent anime array.
     clearAllTimeoutsAndIntervals();
-    console.log(animeInd, charInd);
     let startAnime = (animeInd ? animes[animeInd] : animes[0]);
-    console.log(startAnime);
     const animeNameTag = document.querySelector('.anime-name');
     const charName = document.querySelector('.char-name');
     const charDesc = document.querySelector('.char-desc');
@@ -34,8 +32,6 @@ function siteInitializer(animeInd, charInd){
 }
 
 function dropdownGenerator(animeID){
-    console.log('dgenerator active');
-    console.log(animeID);
     const animesListTag = document.querySelector('.animes-list-js');
     const charsListTag = document.querySelector('.chars-list-js');
     let charsListHTML = ``;
@@ -58,13 +54,11 @@ function dropdownGenerator(animeID){
                             anime.chars.find((id, ind)=>{
                                 if(chara.id == id){
                                     cindex = ind;
-                                    console.log(`cindex of ${chara.name} in animes.char is ${cindex}`);
                                     //cindex is now the index in animes.char
                                 }
                             })
-                            console.log(`found, ${chara}, ${chara.name}, ${cindex}`);
                             charsListHTML += `
-                                <li class="select-list-item"><a href="#" data-anime-ind="${aindex}" data-char-ind="${cindex}" class="select-link char-link">${chara.name}</a></li>
+                                <li class="select-list-item"><a href="#" data-anime-ind="${aindex}" data-char-ind="${cindex}" data-open-close="open" class="select-link char-link">${chara.name}</a></li>
                             `;
                         } 
                     })
@@ -74,18 +68,122 @@ function dropdownGenerator(animeID){
     }
     animesListTag.innerHTML = animeListHTML;
     charsListTag.innerHTML = charsListHTML;
+    document.querySelector('.animes-link').dataset.openClose = "open";
+    document.querySelector('.chars-link').dataset.openClose = "open";
+    document.querySelector('.animes-link').addEventListener('click', (e)=>{
+        dropDown('animes', e.target.dataset.openClose, e.target);
+    })
+    document.querySelector('.chars-link').addEventListener('click', (e)=>{
+        dropDown('chars', e.target.dataset.openClose, e.target);
+    })
     document.querySelectorAll('.char-link').forEach(link=>{
         link.addEventListener('click', (e)=>{
-            console.log('char clicked');
             siteInitializer(e.target.dataset.animeInd, e.target.dataset.charInd);
+            toggleSideBar('close');
         });
     })
     document.querySelectorAll('.anime-link').forEach(link=>{
         link.addEventListener('click', (e)=>{
-            console.log('anime clicked.');
             siteInitializer(e.target.dataset.animeInd);
+            toggleSideBar('close');
         });
-    })
+    });
+    document.querySelector('.menu-icon').addEventListener('click', (e)=>{
+        toggleSideBar('open');
+    });
+    document.querySelector('.close-menu-button').addEventListener('click', (e)=>{
+        toggleSideBar('close');
+    });
+    document.querySelector('.dim-screen').addEventListener('click', (e)=>{
+        toggleSideBar('close');
+    });
+}
+function toggleSideBar(openClose){
+    if(window.innerWidth < 851){
+        const dimScreen = document.querySelector('.dim-screen');
+        const closeButton = document.querySelector('.close-menu');
+        console.log('screen ver')
+        if(openClose === 'open'){
+            console.log('open sidebar');
+            const navMenu = document.querySelector('.nav-options');
+            dimScreen.style.display = 'flex';
+            dimScreen.style.animation = 'fade-slide-right 0.5s ease-in-out forwards';
+            closeButton.style.display = 'flex';
+            navMenu.style.display = "flex";
+            navMenu.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
+        } else if(openClose === 'close'){
+            console.log('close sidebar.');
+            closeButton.style.display = 'none';
+            const navMenu = document.querySelector('.nav-options');
+            dropDown('char', 'close', document.querySelector('.chars-link'));
+            dropDown('animes', 'close', document.querySelector('.animes-link'));
+            dimScreen.style.animation = 'fade-slide-away-left 0.5s ease-in-out forwards';
+            navMenu.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
+            setTimeout(()=>{
+                navMenu.style.display = "none";
+                dimScreen.style.display = 'none';
+            }, 500);
+            
+        }
+    } else{
+        console.error("Screen width too large to toggle sidebar.");
+        console.error("Close button or menu icon should not available.");
+    }
+}
+function dropDown(type, openClose, target){
+    
+    if(type === 'animes'){
+        if(openClose==='open'){
+            target.dataset.openClose = "close";
+            document.querySelector('.animes-list-js').style.display = "flex";
+            dropDown('chars', 'close', document.querySelector('.chars-link'));
+            document.querySelector('.animes-dd-icon').style.transform = "rotate(180deg)";
+            document.querySelectorAll('.animes-select-link').forEach(link=>{
+                if(window.innerWidth <851){
+                    link.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
+                }else{
+                    link.style.animation = "fade-slide-down 0.5s ease-in-out forwards";
+                }
+            })
+        } else if(openClose === 'close'){
+            target.dataset.openClose = "open";
+            document.querySelector('.animes-dd-icon').style.transform = "rotate(0deg)";
+            document.querySelectorAll('.animes-select-link').forEach(link=>{
+                if(window.innerWidth <851){
+                    link.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
+                }else{
+                    link.style.animation = "fade-slide-away-up 0.5s ease-in-out forwards";
+                }
+            })
+            document.querySelector('.animes-list-js').style.display = "none";
+        }
+        
+    } else if(type === 'chars'){
+        if (openClose === 'open'){
+            target.dataset.openClose = "close";
+            document.querySelector('.chars-list-js').style.display = "flex";
+            dropDown('animes', 'close', document.querySelector('.animes-link'));
+            document.querySelector('.chars-dd-icon').style.transform = "rotate(180deg)";
+            document.querySelectorAll('.chars-select-link').forEach(link=>{
+                if(window.innerWidth <851){
+                    link.style.animation = "fade-slide-right 0.5s ease-in-out forwards";
+                }else{
+                    link.style.animation = "fade-slide-down 0.5s ease-in-out forwards";
+                }
+            });
+        } else if(openClose === 'close'){
+            target.dataset.openClose = "open";
+            document.querySelector('.chars-dd-icon').style.transform = "rotate(0deg)";
+            document.querySelectorAll('.chars-select-link').forEach(link=>{
+                if(window.innerWidth <851){
+                    link.style.animation = "fade-slide-away-left 0.5s ease-in-out forwards";
+                }else{
+                    link.style.animation = "fade-slide-away-up 0.5s ease-in-out forwards";
+                }
+            })
+            document.querySelector('.chars-list-js').style.display = "none";
+        }
+    }
 }
 
 function modeHandler(mode){
@@ -152,6 +250,8 @@ function clearAllTimeoutsAndIntervals(){
     })
 }
 
+
+//Done Tasks:
 //Make characters of an anime change periodically.
 //And make the colors change too(CSS)
 
