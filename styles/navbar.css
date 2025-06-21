@@ -43,12 +43,13 @@ nav {
                 justify-content: center;
                 align-items: center;
 
-                >.drop-down-icon{
+                .drop-down-icon{
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     pointer-events: none;
-                    svg{
+                    >svg{
+                        fill: rgb(var(--text-color));
                         transition: all 0.2s;
                     }
                     
