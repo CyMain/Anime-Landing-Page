@@ -249,10 +249,10 @@ document.querySelector('.toggle-mode').addEventListener('click', ()=>{
 
 function charAction(currCharInd){
     let char;
-    let currIndex = 1;
+    let currIndex = 0;
     let imgsLength;
     charas.find(chara =>{
-        if(chara.id == currCharInd){
+        if(chara.id === currCharInd){
             char = chara;
         }
     })
