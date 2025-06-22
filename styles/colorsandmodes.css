@@ -1,12 +1,12 @@
 body{
     --background-col:242, 242, 242;
-    --background-col2:231, 231, 231;
+    --background-col2:197, 197, 197;
     --text-color:26, 26, 26;
 }
 
 body.dark-mode{
     --background-col:17, 17, 17;
-    --background-col2:20, 20, 20;
+    --background-col2:48, 48, 48;
     --text-color:226, 226, 226;
 }
 
