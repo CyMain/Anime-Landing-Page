@@ -259,7 +259,7 @@ function charAction(currCharInd){
     })
     imgsLength = char.charIMGs.length;
     let intervalID = setInterval(()=>{
-        if(currIndex == imgsLength){
+        if(currIndex >= imgsLength){
             currIndex = 0;
         }
         changeCharIMG(char.charIMGs[currIndex]);
