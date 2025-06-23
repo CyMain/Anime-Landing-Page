@@ -12,6 +12,12 @@ export const animes = [
         chars: ['5', '6', '7', '8','9'],
         watchURL: "https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba?srsltid=AfmBOooUbvB8AuppEPxnhZNiufO8orhJ0gO1csjUr7XZTy4Y5rGcHqE8",
         gallery: [],
+    },{
+        id:"A3",
+        name:"Haikyu!!",
+        chars: ['10', '11', '12', '13','14'],
+        watchURL: "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu?srsltid=AfmBOooETR87gJWMI8DncOZxKMop2FbvWhOWwOzNqAwOtLt7iRwOYp2V",
+        gallery: [],
     },
 ]
 
@@ -73,5 +79,11 @@ export const charas = [
         desc: "A main character of Kimetsu no Yaiba",
         charIMGs: ['/assets/images/cutouts/shinobu1-cutout.webp', '/assets/images/cutouts/shinobu2-cutout.webp', '/assets/images/cutouts/shinobu3-cutout.webp'],
         modeName:"kyojuro",
+    }, {
+        id:'10',
+        name:"Hinata Shoyo",
+        desc: "The main character of Haikyu!!",
+        charIMGs: ['/assets/images/cutouts/shoyoHinata1-cutout.webp', '/assets/images/cutouts/shoyoHinata2-cutout.webp', '/assets/images/cutouts/shoyoHinata3-cutout.webp', '/assets/images/cutouts/shoyoHinata4-cutout.webp', '/assets/images/cutouts/shoyoHinata5-cutout.webp'],
+        modeName:"hinata",
     }
 ]

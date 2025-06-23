@@ -79,3 +79,10 @@ body.kyojuro{
 body.kyojuro.dark-mode{
     --accent1: 78, 35, 7;
 }
+
+body.hinata{
+    --accent1:240, 136, 1;
+}
+body.hinata.dark-mode{
+    --accent1:104, 59, 0;
+}
