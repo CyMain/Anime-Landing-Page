@@ -7,21 +7,7 @@ let timeouts = [];
 let intervals = [];
 
 siteInitializer();
-document.querySelector('.animes-link').addEventListener('click', (e)=>{
-        dropDown('animes', e.target.dataset.openClose, e.target);
-    })
-    document.querySelector('.chars-link').addEventListener('click', (e)=>{
-        dropDown('chars', e.target.dataset.openClose, e.target);
-    })
-document.querySelector('.menu-icon').addEventListener('click', (e)=>{
-        toggleSideBar('open');
-    });
-    document.querySelector('.close-menu-button').addEventListener('click', (e)=>{
-        toggleSideBar('close');
-    });
-    document.querySelector('.dim-screen').addEventListener('click', (e)=>{
-        toggleSideBar('close');
-    });
+
 
 
 
@@ -52,6 +38,21 @@ function siteInitializer(animeInd, charInd){
             charIMG.style.animation = "fade-slide-up 1s ease-in-out";
         }
     });
+    document.querySelector('.animes-link').onclick = (e)=>{
+        dropDown('animes', e.target.dataset.openClose, e.target);
+    };
+    document.querySelector('.chars-link').onclick = (e)=>{
+        dropDown('chars', e.target.dataset.openClose, e.target);
+    };
+    document.querySelector('.menu-icon').onclick = (e)=>{
+        toggleSideBar('open');
+    };
+    document.querySelector('.close-menu-button').onclick = (e)=>{
+        toggleSideBar('close');
+    };
+    document.querySelector('.dim-screen').onclick = (e)=>{
+        toggleSideBar('close');
+    };
 }
 
 function dropdownGenerator(animeID){
@@ -273,7 +274,7 @@ function changeCharIMG(nextCharImg){
     let timeoutID = setTimeout(()=>{
         imgTag.src = nextCharImg;
         imgTag.style.animation ="fade-slide-left 1s ease-in-out forwards";
-    },2000);
+    },1000);
     timeouts.push(timeoutID);
 }
 
