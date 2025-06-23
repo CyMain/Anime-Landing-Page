@@ -250,7 +250,7 @@ document.querySelector('.toggle-mode').addEventListener('click', ()=>{
 
 function charAction(currCharInd){
     let char;
-    let currIndex = 0;
+    let currIndex = 1;
     let imgsLength;
     charas.find(chara =>{
         if(chara.id === currCharInd){
